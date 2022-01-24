@@ -26,6 +26,7 @@ let package = Package(
             name: "MNAVChapters",
             cxxSettings: [
                 .headerSearchPath("../MNAVChapters/include"),
+                .define("TARGET_OS_OSX", to: "1", .when(platforms: [.macOS]))
             ]
         ),
     ]

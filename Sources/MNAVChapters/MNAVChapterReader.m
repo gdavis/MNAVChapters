@@ -8,10 +8,9 @@
 
 #import "include/MNAVChapterReader.h"
 
-#if TARGET_OSX
+#if TARGET_OS_OSX
 #import <AppKit/AppKit.h>
-
-#elseif TARGET_OS_IPHONE
+#else
 #import <UIKit/UIKit.h>
 #endif
 
@@ -137,7 +136,7 @@ static NSString *const MNAVMetadataFormatID3 = @"org.id3";
     return item.stringValue;
 }
 
-#if TARGET_OS_MAC
+#if TARGET_OS_OSX
 - (NSImage *)imageFromGroup:(AVTimedMetadataGroup *)group {
     NSArray *itemArray = [self itemsFromArray:group.items withKey:@"artwork"];
     if ([itemArray count] > 0) {
@@ -309,7 +308,7 @@ long btoi(char* bytes, long size, long offset);
     return chapter;
 }
 
-#if TARGET_OS_MAC
+#if TARGET_OS_OSX
 - (NSImage *)imageInData:(NSData *)data {
     NSImage *result = nil;
 

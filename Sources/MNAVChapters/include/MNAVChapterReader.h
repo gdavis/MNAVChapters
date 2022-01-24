@@ -10,9 +10,8 @@
 #import <CoreMedia/CMTime.h>
 #import <AVFoundation/AVFoundation.h>
 
-#if TARGET_OS_MAC
+#if TARGET_OS_OSX
 #import <AppKit/AppKit.h>
-
 #else
 #import <UIKit/UIKit.h>
 #endif
@@ -24,7 +23,7 @@
 @property (nonatomic, copy) NSString *url;
 @property (nonatomic) CMTime time;
 @property (nonatomic) CMTime duration;
-#if TARGET_OS_MAC
+#if TARGET_OS_OSX
 @property (nonatomic) NSImage *artwork;
 #else
 @property (nonatomic) UIImage *artwork;
