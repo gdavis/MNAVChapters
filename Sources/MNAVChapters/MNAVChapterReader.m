@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Michael Nisi. All rights reserved.
 //
 
-#import "MNAVChapterReader.h"
+#import "include/MNAVChapterReader.h"
 #import <UIKit/UIKit.h>
 
 #define _unused(x) ((void)(x))

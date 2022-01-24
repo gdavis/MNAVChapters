@@ -6,8 +6,10 @@
 //  Copyright © 2016 Michael Nisi. All rights reserved.
 //
 
+import AVFoundation
 import UIKit
 import os.log
+import MNAVChapters
 
 private let log = OSLog(subsystem: "ink.codes.MNAVChapters", category: "app")
 
@@ -73,8 +75,10 @@ class DetailViewController: UICollectionViewController {
       }
       
       guard let target = self else { return }
-      
-      update(target: target, url: targetURL)
+
+        DispatchQueue.main.async {
+            update(target: target, url: targetURL)
+        }
     }
     
     task?.resume()

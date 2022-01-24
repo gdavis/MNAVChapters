@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,8 +15,9 @@
 		4C5974CA1C9DC1FD00F7B8B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C5974C81C9DC1FD00F7B8B7 /* Main.storyboard */; };
 		4C5974CC1C9DC1FD00F7B8B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C5974CB1C9DC1FD00F7B8B7 /* Assets.xcassets */; };
 		4C5974CF1C9DC1FD00F7B8B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C5974CD1C9DC1FD00F7B8B7 /* LaunchScreen.storyboard */; };
-		4C5974D91C9DC2CE00F7B8B7 /* libMNAVChapters.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C5974D81C9DC2CE00F7B8B7 /* libMNAVChapters.a */; };
 		4C5974DD1C9DC88400F7B8B7 /* episodes.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C5974DC1C9DC88400F7B8B7 /* episodes.json */; };
+		779566FA279F224500AA145E /* MNAVChapters in Resources */ = {isa = PBXBuildFile; fileRef = 779566F9279F223100AA145E /* MNAVChapters */; };
+		779566FF279F2A1200AA145E /* MNAVChapters in Frameworks */ = {isa = PBXBuildFile; productRef = 779566FE279F2A1200AA145E /* MNAVChapters */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,9 +31,8 @@
 		4C5974CB1C9DC1FD00F7B8B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C5974CE1C9DC1FD00F7B8B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C5974D01C9DC1FD00F7B8B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4C5974D71C9DC21D00F7B8B7 /* MNAVChapters-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MNAVChapters-Bridging-Header.h"; sourceTree = "<group>"; };
-		4C5974D81C9DC2CE00F7B8B7 /* libMNAVChapters.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMNAVChapters.a; path = "../build/Debug-iphoneos/libMNAVChapters.a"; sourceTree = "<group>"; };
 		4C5974DC1C9DC88400F7B8B7 /* episodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = episodes.json; sourceTree = "<group>"; };
+		779566F9279F223100AA145E /* MNAVChapters */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MNAVChapters; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C5974D91C9DC2CE00F7B8B7 /* libMNAVChapters.a in Frameworks */,
+				779566FF279F2A1200AA145E /* MNAVChapters in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,9 +50,10 @@
 		4C5974B61C9DC1FD00F7B8B7 = {
 			isa = PBXGroup;
 			children = (
-				4C5974D81C9DC2CE00F7B8B7 /* libMNAVChapters.a */,
+				779566F9279F223100AA145E /* MNAVChapters */,
 				4C5974C11C9DC1FD00F7B8B7 /* MNAVChaptersExample */,
 				4C5974C01C9DC1FD00F7B8B7 /* Products */,
+				779566FB279F226000AA145E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,7 +73,6 @@
 				4C5974C61C9DC1FD00F7B8B7 /* DetailViewController.swift */,
 				4C41B4BC228BF8FD0048A00D /* ChapterCell.swift */,
 				4C41B4BD228BF8FD0048A00D /* ChapterCell.xib */,
-				4C5974D71C9DC21D00F7B8B7 /* MNAVChapters-Bridging-Header.h */,
 				4C5974C81C9DC1FD00F7B8B7 /* Main.storyboard */,
 				4C5974CB1C9DC1FD00F7B8B7 /* Assets.xcassets */,
 				4C5974CD1C9DC1FD00F7B8B7 /* LaunchScreen.storyboard */,
@@ -80,6 +80,13 @@
 				4C5974D01C9DC1FD00F7B8B7 /* Info.plist */,
 			);
 			path = MNAVChaptersExample;
+			sourceTree = "<group>";
+		};
+		779566FB279F226000AA145E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -98,6 +105,9 @@
 			dependencies = (
 			);
 			name = MNAVChaptersExample;
+			packageProductDependencies = (
+				779566FE279F2A1200AA145E /* MNAVChapters */,
+			);
 			productName = MNAVChaptersExample;
 			productReference = 4C5974BF1C9DC1FD00F7B8B7 /* MNAVChaptersExample.app */;
 			productType = "com.apple.product-type.application";
@@ -143,6 +153,7 @@
 			files = (
 				4C5974CF1C9DC1FD00F7B8B7 /* LaunchScreen.storyboard in Resources */,
 				4C5974DD1C9DC88400F7B8B7 /* episodes.json in Resources */,
+				779566FA279F224500AA145E /* MNAVChapters in Resources */,
 				4C5974CC1C9DC1FD00F7B8B7 /* Assets.xcassets in Resources */,
 				4C5974CA1C9DC1FD00F7B8B7 /* Main.storyboard in Resources */,
 				4C41B4BF228BF8FD0048A00D /* ChapterCell.xib in Resources */,
@@ -297,11 +308,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = T5K6Y7WRJ4;
 				INFOPLIST_FILE = MNAVChaptersExample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.michaelnisi.MNAVChaptersExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/MNAVChaptersExample/MNAVChapters-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -310,11 +324,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = T5K6Y7WRJ4;
 				INFOPLIST_FILE = MNAVChaptersExample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.michaelnisi.MNAVChaptersExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/MNAVChaptersExample/MNAVChapters-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -341,6 +358,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		779566FE279F2A1200AA145E /* MNAVChapters */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MNAVChapters;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4C5974B71C9DC1FD00F7B8B7 /* Project object */;
 }
