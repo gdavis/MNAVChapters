@@ -10,6 +10,13 @@
 #import <CoreMedia/CMTime.h>
 #import <AVFoundation/AVFoundation.h>
 
+#if TARGET_OS_MAC
+#import <AppKit/AppKit.h>
+
+#else
+#import <UIKit/UIKit.h>
+#endif
+
 @interface MNAVChapter : NSObject
 @property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, assign) BOOL hidden;
@@ -17,7 +24,12 @@
 @property (nonatomic, copy) NSString *url;
 @property (nonatomic) CMTime time;
 @property (nonatomic) CMTime duration;
+#if TARGET_OS_MAC
+@property (nonatomic) NSImage *artwork;
+#else
 @property (nonatomic) UIImage *artwork;
+#endif
+
 - (BOOL)isEqualToChapter:(MNAVChapter *)aChapter;
 - (MNAVChapter *)initWithTime:(CMTime)time duration:(CMTime)duration;
 + (MNAVChapter *)chapterWithTime:(CMTime)time duration:(CMTime)duration;

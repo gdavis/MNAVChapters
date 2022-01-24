@@ -7,7 +7,13 @@
 //
 
 #import "include/MNAVChapterReader.h"
+
+#if TARGET_OSX
+#import <AppKit/AppKit.h>
+
+#elseif TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
+#endif
 
 #define _unused(x) ((void)(x))
 
@@ -131,14 +137,27 @@ static NSString *const MNAVMetadataFormatID3 = @"org.id3";
     return item.stringValue;
 }
 
+#if TARGET_OS_MAC
+- (NSImage *)imageFromGroup:(AVTimedMetadataGroup *)group {
+    NSArray *itemArray = [self itemsFromArray:group.items withKey:@"artwork"];
+    if ([itemArray count] > 0) {
+        AVMetadataItem *item = itemArray[0];
+        return [[NSImage new] initWithData:item.dataValue];
+    }
+    return NULL;
+}
+
+#else
 - (UIImage *)imageFromGroup:(AVTimedMetadataGroup *)group {
     NSArray *itemArray = [self itemsFromArray:group.items withKey:@"artwork"];
     if ([itemArray count] > 0) {
         AVMetadataItem *item = itemArray[0];
+
         return [UIImage imageWithData:item.dataValue];
     }
     return NULL;
 }
+#endif
 
 - (NSArray *)itemsFromArray:(NSArray *)items withKey:(NSString *)key {
     return [AVMetadataItem metadataItemsFromArray:items withKey:key keySpace:nil];
@@ -290,6 +309,47 @@ long btoi(char* bytes, long size, long offset);
     return chapter;
 }
 
+#if TARGET_OS_MAC
+- (NSImage *)imageInData:(NSData *)data {
+    NSImage *result = nil;
+
+    @try {
+        NSRange range = [self rangeOfFrameWithID:AVMetadataID3MetadataKeyAttachedPicture inData:data];
+        unsigned long loc = range.location;
+
+        if (loc==NSNotFound) {
+            return nil;
+        }
+
+        NSData *sizeData = SUBDATA(data, loc + ID3FramePositionSize, ID3FrameSize);
+        NSInteger size =  btoi((char *)sizeData.bytes, sizeData.length, 0);
+
+        //        NSData *textEncodingData = SUBDATA(data, loc + ID3FramePositionEncoding, ID3FrameEncoding);
+        //        NSInteger textEncodingValue = btoi((char *)textEncodingData.bytes, textEncodingData.length, 0);
+        //        NSInteger textEncoding = [self textEncoding:textEncodingValue];
+
+        NSData *content = SUBDATA(data, loc + ID3FrameFrame + ID3FrameEncoding, size - ID3FrameEncoding);
+
+        NSData *mimeTypeData = [self dataToTermInData:content];
+        //        NSString *mimeType = [NSString stringWithUTF8String:mimeTypeData.bytes];
+
+        content = SUBDATA(content, mimeTypeData.length+ID3FrameEncoding, content.length-mimeTypeData.length-ID3FrameEncoding);
+
+        NSData *imageDescriptionData = [self dataToTermInData:content];
+        //        NSString *imageDescriptionText = [NSString stringWithUTF8String:imageDescriptionData.bytes];
+
+        content = SUBDATA(content, imageDescriptionData.length, content.length-imageDescriptionData.length);
+
+        result = [[NSImage new] initWithData:content];
+    }
+    @catch (NSException *exception) {
+        //
+    }
+    @finally {
+        return result;
+    }
+}
+#else
 - (UIImage *)imageInData:(NSData *)data {
     UIImage *result = nil;
     
@@ -329,6 +389,7 @@ long btoi(char* bytes, long size, long offset);
         return result;
     }
 }
+#endif
 
 - (NSString *)userURLInData:(NSData *)data {
     NSString *result = nil;
